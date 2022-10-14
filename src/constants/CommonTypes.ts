@@ -1,8 +1,8 @@
-type CommonElementsType = {
+type CommonElementTypes = {
   [key: string]: any;
 };
 
-export const defaultCommonElements: CommonElementsType = {
+export const defaultCommonElements: CommonElementTypes = {
   button: "button",
   input: "input",
   text: "text",

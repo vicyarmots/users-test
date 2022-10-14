@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import UserFormModal from "./UserFormModal";
 import UsersList from "./UsersList/index";
+import UserFormModal from "./UserFormModal";
 
 const Layout: FC = () => {
   return (

@@ -14,6 +14,7 @@ type FormState = Omit<IUser, "id">;
 
 type UserFormProps = Pick<ModalProps, "setIsOpen">;
 
+// component
 const UserForm: FC<UserFormProps> = ({ setIsOpen }): JSX.Element => {
   const dispatch = useAppDispatch();
 
@@ -32,10 +33,8 @@ const UserForm: FC<UserFormProps> = ({ setIsOpen }): JSX.Element => {
     phone,
   }) => {
     dispatch(addUser(name, email, phone));
+    setIsOpen && setIsOpen(false);
 
-    if (setIsOpen !== undefined) {
-      setIsOpen(false);
-    }
     reset();
   };
 
