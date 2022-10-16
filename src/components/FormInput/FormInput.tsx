@@ -1,5 +1,4 @@
 import Input from "../../common/Input";
-import get from "lodash.get";
 
 import {
   UseFormRegister,
@@ -31,9 +30,6 @@ const FormInput = <TFormValues extends Record<string, unknown>>({
   className,
   ...props
 }: FormInputProps<TFormValues>): JSX.Element => {
-  const errorMessages = get(errors, name);
-  const hasError = !!(errors && errorMessages);
-
   return (
     <>
       <Input

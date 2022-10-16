@@ -1,9 +1,11 @@
-import { IUser } from "../models/IUser";
+// libraries
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchUsers } from "../store/FetchUsersList";
 import { v4 as uuidv4 } from "uuid";
-// types & interfaces
-import { UserState } from "../models/IUser";
+// actions
+import { fetchUsers } from "./FetchUsersList";
+// models
+import { UserState } from "../../models/IUser";
+import { IUser } from "../../models/IUser";
 
 const initialState: UserState = {
   users: [],
@@ -11,7 +13,7 @@ const initialState: UserState = {
   error: "",
 };
 
-export const userSlice = createSlice({
+export const userListSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
@@ -21,14 +23,14 @@ export const userSlice = createSlice({
       },
       prepare: (name, phone, email) => ({
         payload: {
-          id: Math.random(),
+          id: uuidv4(),
           name,
           email,
           phone,
         } as IUser,
       }),
     },
-    removeUser(state, action: PayloadAction<number>) {
+    removeUser(state, action: PayloadAction<IUser["id"]>) {
       state.users = state.users.filter(({ id }) => id !== action.payload);
     },
     sortUsersList(state) {
@@ -51,6 +53,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { addUser, removeUser, sortUsersList } = userSlice.actions;
+export const { addUser, removeUser, sortUsersList } = userListSlice.actions;
 
-export default userSlice.reducer;
+export default userListSlice.reducer;

@@ -1,11 +1,9 @@
-import Layout from "./components/Layout";
+import { MainLayout } from "./layouts";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Layout />
-      </header>
+      <MainLayout />
     </div>
   );
 }

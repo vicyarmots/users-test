@@ -1,8 +1,7 @@
-import { defaultCommonElements } from "../../constants/CommonTypes";
 import { ButtonProps } from "./Button.element.props";
 import { ElementType } from "react";
 
-const defaultElement = defaultCommonElements.button;
+const defaultElement = "button";
 
 const Button = <E extends ElementType = typeof defaultElement>({
   children,

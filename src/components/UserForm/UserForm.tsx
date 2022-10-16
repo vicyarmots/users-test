@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useAppDispatch } from "../../hooks/useReduxHook";
-import { addUser } from "../../store/UserListSlice";
+import { addUser } from "../../store/users/UserListSlice";
 import { useForm, SubmitHandler } from "react-hook-form";
 import FormInput from "../FormInput";
 import { emailPattern } from "../../utils";
@@ -8,6 +8,7 @@ import { emailPattern } from "../../utils";
 // ts models
 import { IUser } from "../../models/IUser";
 import { ModalProps } from "../Modal/Modal";
+import Button from "../../common/Button";
 
 // types & interfaces
 type FormState = Omit<IUser, "id">;
@@ -79,7 +80,7 @@ const UserForm: FC<UserFormProps> = ({ setIsOpen }): JSX.Element => {
         errors={errors}
       />
 
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 };

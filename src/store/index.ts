@@ -1,5 +1,7 @@
+// libraries
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import UserListSlice from "./UserListSlice";
+
+// redux-persist config storage
 import storage from "redux-persist/lib/storage";
 import {
   persistReducer,
@@ -11,6 +13,9 @@ import {
   REGISTER,
   WebStorage,
 } from "redux-persist";
+
+// redux slices
+import UserListSlice from "./users/UserListSlice";
 
 interface PersistConfig {
   key: string;

@@ -1,5 +1,7 @@
+// libraries
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getUsers } from "../services/users.service";
+// services
+import { getUsers } from "../../services/users.service";
 
 export const fetchUsers = createAsyncThunk(
   "users/fetchAll",

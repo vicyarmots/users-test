@@ -7,6 +7,7 @@ const Modal = lazy(() => import("../Modal"));
 
 const UserFormModal: FC = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<ModalProps["open"]>(false);
+
   return (
     <>
       <Button onClick={() => setIsOpen(true)}>ADD USER</Button>

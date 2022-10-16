@@ -7,9 +7,9 @@ import { useAppDispatch, useAppSelector } from "../../hooks/useReduxHook";
 import { IUser } from "../../models/IUser";
 import { RootState } from "../../store";
 
-import { fetchUsers } from "../../store/FetchUsersList";
+import { fetchUsers } from "../../store/users/FetchUsersList";
 
-import { sortUsersList } from "../../store/UserListSlice";
+import { sortUsersList } from "../../store/users/UserListSlice";
 //helpers
 import { filterBySearch } from "../../helpers";
 import SearchInput from "../SearchInput";

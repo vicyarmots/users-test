@@ -1,8 +1,7 @@
-import { defaultCommonElements } from "../../constants/CommonTypes";
 import { CardProps } from "./Card.element.props";
 import { ElementType } from "react";
 
-const defaultElement = defaultCommonElements.div;
+const defaultElement = "div";
 
 const Card = <E extends ElementType = typeof defaultElement>({
   children,

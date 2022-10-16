@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import ReactDOM from "react-dom";
+import { createPortal } from "react-dom";
 
 export type ModalProps = {
   children?: ReactNode;
@@ -11,24 +11,27 @@ export type ModalProps = {
 const root = document.getElementById("portal") as HTMLElement;
 
 const OVERLAY_STYLES: any = {
+  width: "100vw",
+  height: "100vh",
+  background: "rgba(0, 0, 0, 0.4)",
   position: "fixed",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  transform: " scale(1)",
   top: 0,
   left: 0,
-  right: 0,
-  bottom: 0,
-  transform: "translate (-50%, -50%)",
-  background: "rgba(0,0,0,0.7)",
+  transition: 0.5,
   zIndex: 1000,
 };
 
 const MODAL_STYLES: any = {
   position: "fixed",
-  top: "50%",
-  left: "50%",
-  transform: "translate (-50%, -50%)",
+  top: "30%",
+  left: "20%",
   background: "#FFF",
-  padding: "50px",
-  zIndex: 1000,
+  padding: "100px",
+  zIndex: 1001,
 };
 
 const Modal: FC<ModalProps> = ({
@@ -38,7 +41,7 @@ const Modal: FC<ModalProps> = ({
 }): JSX.Element | null => {
   if (!open) return null;
 
-  return ReactDOM.createPortal(
+  return createPortal(
     <>
       <div style={OVERLAY_STYLES}>OVERLAY</div>
       <div
