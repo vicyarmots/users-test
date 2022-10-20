@@ -1,20 +1,19 @@
 import Button from '../../common/Button';
 import UserCard from '../UserCard';
 import { useEffect, useMemo, useState, useDeferredValue, FC } from 'react';
-
+// redux hooks
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
-
+// ts models
 import { IUser } from '../../models/IUser';
 import { RootState } from '../../store';
-
+// store
 import { fetchUsers } from '../../store/users/FetchUsersList';
-
+import { setFilterType } from '../../store/users/UserListSlice';
 import { sortUsersList } from '../../helpers/selectors';
 //helpers
 import { filterBySearch } from '../../helpers';
 import SearchInput from '../SearchInput';
-import { setFilterType } from '../../store/users/UserListSlice';
-
+// styles
 import styles from './UsersList.module.scss';
 
 const UsersList: FC = (): JSX.Element => {
@@ -50,26 +49,26 @@ const UsersList: FC = (): JSX.Element => {
 
    const handleSortUsersList = () => dispatch(setFilterType('sort'));
 
-   const usersList = useSortUsers
+   const getUsersList = useSortUsers
       ? useSortUsers.map((item: IUser) => <UserCard key={item.id} {...item} />)
       : getListBySearch.map((item: IUser) => (
            <UserCard key={item.id} {...item} />
         ));
 
-   const isLoad = isLoading && <h1>LOADING, PLEASE WAIT</h1>;
+   const isLoader = isLoading && <h1>LOADING, PLEASE WAIT</h1>;
 
    const isError = error && <h1>ERROR</h1>;
 
    return (
       <div className={styles.list}>
          <Button onClick={handleSortUsersList}>SORT LIST</Button>
-         {isLoad}
+         {isLoader}
          {isError}
          <SearchInput
             searchValue={searchValue}
             setSearchValue={setSearchValue}
          />
-         {usersList}
+         {getUsersList}
       </div>
    );
 };

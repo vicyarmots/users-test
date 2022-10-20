@@ -1,0 +1,23 @@
+.overlay {
+   width: '100vw';
+   height: '100vh';
+   background: 'rgba(0, 0, 0, 0.4)';
+   position: 'fixed';
+   display: 'flex';
+   justify-content: 'center';
+   align-items: 'center';
+   transform: ' scale(1)';
+   top: 0;
+   left: 0;
+   transition: 0.5;
+   z-index: 1000;
+}
+
+.modal {
+   position: 'fixed';
+   top: '30%';
+   left: '20%';
+   background: '#FFF';
+   padding: '100px';
+   z-index: 1001;
+}
