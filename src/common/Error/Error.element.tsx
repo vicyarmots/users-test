@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { FormErrorMessageProps } from "./Error.element.props";
+import { FC } from 'react';
+import { FormErrorMessageProps } from './Error.element.types';
 
 export const FormErrorMessage: FC<FormErrorMessageProps> = ({
-  children,
-  className,
+   children,
+   className,
 }) => <p className={className}>{children}</p>;

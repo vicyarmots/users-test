@@ -1,4 +1,4 @@
-import { CardProps } from './Card.element.props';
+import { CardProps } from './Card.element.types';
 import { ElementType } from 'react';
 
 const defaultElement = 'div';

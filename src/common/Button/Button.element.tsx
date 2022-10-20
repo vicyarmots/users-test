@@ -1,4 +1,4 @@
-import { ButtonProps } from './Button.element.props';
+import { ButtonProps } from './Button.element.types';
 import { ElementType } from 'react';
 
 const defaultElement = 'button';

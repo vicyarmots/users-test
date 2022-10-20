@@ -10,7 +10,7 @@ import {
 } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { FormErrorMessage } from '../../common/Error/Error.element';
-import { InputProps } from '../../common/Input/Input.element.props';
+import { InputProps } from '../../common/Input/Input.element.types';
 
 type FormInputProps<TFormValues extends FieldValues> = {
    name: Path<TFormValues>;

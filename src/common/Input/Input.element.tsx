@@ -1,5 +1,5 @@
 import { FC, forwardRef, InputHTMLAttributes } from 'react';
-import { InputProps } from './Input.element.props';
+import { InputProps } from './Input.element.types';
 
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
    (
