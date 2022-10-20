@@ -1,61 +1,77 @@
-import Button from "../../common/Button";
-import UserCard from "../UserCard";
-import { useEffect, useMemo, useState, useDeferredValue, FC } from "react";
+import Button from '../../common/Button';
+import UserCard from '../UserCard';
+import { useEffect, useMemo, useState, useDeferredValue, FC } from 'react';
 
-import { useAppDispatch, useAppSelector } from "../../hooks/useReduxHook";
+import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 
-import { IUser } from "../../models/IUser";
-import { RootState } from "../../store";
+import { IUser } from '../../models/IUser';
+import { RootState } from '../../store';
 
-import { fetchUsers } from "../../store/users/FetchUsersList";
+import { fetchUsers } from '../../store/users/FetchUsersList';
 
-import { sortUsersList } from "../../store/users/UserListSlice";
+import { sortUsersList } from '../../helpers/selectors';
 //helpers
-import { filterBySearch } from "../../helpers";
-import SearchInput from "../SearchInput";
+import { filterBySearch } from '../../helpers';
+import SearchInput from '../SearchInput';
+import { setFilterType } from '../../store/users/UserListSlice';
+
+import styles from './UsersList.module.scss';
 
 const UsersList: FC = (): JSX.Element => {
-  const dispatch = useAppDispatch();
+   const dispatch = useAppDispatch();
 
-  const { users, isLoading, error } = useAppSelector(
-    (state: RootState) => state.UserListSlice
-  );
+   const { users, isLoading, error } = useAppSelector(
+      (state: RootState) => state.UserListSlice
+   );
 
-  const [searchValue, setSearchValue] = useState<string>("");
+   const useSortUsers = useAppSelector(sortUsersList);
 
-  const defferedValue = useDeferredValue<string>(searchValue);
+   const [searchValue, setSearchValue] = useState<string>('');
 
-  const getListBySearch = useMemo(() => {
-    if (defferedValue === "") {
-      return users;
-    }
+   const defferedValue = useDeferredValue<string>(searchValue);
 
-    return filterBySearch(users, defferedValue);
-  }, [defferedValue, users]);
+   const getListBySearch = useMemo(() => {
+      if (defferedValue === '') {
+         return users;
+      }
 
-  useEffect(() => {
-    if (users.length === 0) {
-      dispatch(fetchUsers());
-    }
-  }, [dispatch, users]);
+      return filterBySearch(users, defferedValue);
+   }, [defferedValue, users]);
 
-  const handleSortUsersList = () => dispatch(sortUsersList());
+   useEffect(() => {
+      if (users.length === 0) {
+         dispatch(fetchUsers());
+      }
 
-  const isLoad = isLoading && <h1>LOADING, PLEASE WAIT</h1>;
+      if (searchValue) {
+         dispatch(setFilterType(''));
+      }
+   }, [dispatch, users, searchValue]);
 
-  const isError = error && <h1>ERROR</h1>;
+   const handleSortUsersList = () => dispatch(setFilterType('sort'));
 
-  return (
-    <div>
-      <Button onClick={handleSortUsersList}>SORT LIST</Button>
-      {isLoad}
-      {isError}
-      <SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />
-      {getListBySearch.map((item: IUser) => (
-        <UserCard key={item.id} {...item} />
-      ))}
-    </div>
-  );
+   const usersList = useSortUsers
+      ? useSortUsers.map((item: IUser) => <UserCard key={item.id} {...item} />)
+      : getListBySearch.map((item: IUser) => (
+           <UserCard key={item.id} {...item} />
+        ));
+
+   const isLoad = isLoading && <h1>LOADING, PLEASE WAIT</h1>;
+
+   const isError = error && <h1>ERROR</h1>;
+
+   return (
+      <div className={styles.list}>
+         <Button onClick={handleSortUsersList}>SORT LIST</Button>
+         {isLoad}
+         {isError}
+         <SearchInput
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+         />
+         {usersList}
+      </div>
+   );
 };
 
 export default UsersList;

@@ -1,17 +1,17 @@
 // libraries
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 // services
-import { getUsers } from "../../services/users.service";
+import { getUsers } from '../../services/users.service';
 
 export const fetchUsers = createAsyncThunk(
-  "users/fetchAll",
-  async (_, thunkAPI) => {
-    try {
-      const response = await getUsers();
-      console.log(response);
-      return response;
-    } catch (e) {
-      return thunkAPI.rejectWithValue("Error with loading users");
+    'users/fetchAll',
+    async (_, thunkAPI) => {
+        try {
+            const response = await getUsers();
+            console.log(response);
+            return response;
+        } catch (e) {
+            return thunkAPI.rejectWithValue('Error with loading users');
+        }
     }
-  }
 );
