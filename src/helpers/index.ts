@@ -4,4 +4,6 @@ import { IUser } from '../models/IUser';
 export const filterBySearch = (entries: IUser[], defferedValue: string) =>
     entries.filter(({ name }) =>
         name.toLowerCase().includes(defferedValue.toLowerCase())
-    );
+    );  
+
+// add search list to filter 
